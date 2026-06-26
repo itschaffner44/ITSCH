@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Calendar</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
   <style>
     :root{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans",Arial;}
     body{max-width:900px;margin:24px auto;padding:16px;}
@@ -12,11 +13,11 @@
     .month-title{font-size:1.25rem;font-weight:600;margin:8px 0;}
     .calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
     .weekday{font-weight:700;text-align:center;padding:8px 4px;background:#eee;border-radius:6px;}
-    .day{min-height:80px;background:#fff;border:1px solid #e3e3e3;border-radius:8px;padding:6px;position:relative;cursor:pointer;}
+    .day{height:92px;background:#fff;border:1px solid #e3e3e3;border-radius:8px;padding:6px;position:relative;cursor:pointer;overflow:hidden;}
     .day.out{opacity:0.35}
     .day .date-num{position:absolute;top:6px;right:8px;font-weight:600}
-    .events{margin-top:24px;display:flex;flex-direction:column;gap:4px}
-    .event{font-size:0.75rem;padding:3px 6px;border-left:4px solid #4a90e2;background:#f1f8ff;border-radius:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .events{margin-top:22px;display:flex;flex-direction:column;gap:3px;overflow:hidden;}
+    .event{font-size:0.7rem;line-height:1.2;padding:2px 5px;border-left:4px solid #4a90e2;background:#f1f8ff;border-radius:4px;white-space:normal;word-break:break-word;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;text-overflow:ellipsis;}
     .event-row{display:flex;align-items:center;gap:6px;padding:6px 8px;border-left:4px solid #4a90e2;background:#f1f8ff;border-radius:4px;margin-bottom:4px;cursor:pointer;user-select:none;}
     .event-row.selected{background:#fdecea;outline:2px solid #c0392b;}
     .event-row .event-text{flex:1;font-size:0.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
@@ -201,7 +202,7 @@
         if(events[key]){
           const evs = document.createElement('div');
           evs.className='events';
-          events[key].slice(0,3).forEach(e=>{
+          events[key].slice(0,2).forEach(e=>{
             const ev = document.createElement('div');
             ev.className='event';
             ev.style.borderLeftColor = e.color || '#4a90e2';
